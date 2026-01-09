@@ -136,6 +136,15 @@ type Query {
 - **Option 3**: Frontend → Camunda (camunda-platform token) + Frontend → Backend (LSCSAD token)
 - **Option 4**: Frontend → Camunda (LSCSAD token) + Frontend → Backend (LSCSAD token)
 
+## Camunda REST API Endpoints
+
+### Backend → Camunda REST API:
+- `POST /v1/process-instances` → Start process
+- `GET /v1/process-instances/{key}` → Get process instance
+- `GET /v1/tasks?processInstanceKey={key}` → Get active tasks
+- `POST /v1/tasks/{key}/complete` → Complete task
+- `PATCH /v1/process-instances/{key}/variables` → Update variables
+
 ## Support
 
 For questions or issues, refer to the specific option documentation or the main integration guide.
