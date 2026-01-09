@@ -144,6 +144,17 @@ type Query {
 - `GET /v1/tasks?processInstanceKey={key}` → Get active tasks
 - `POST /v1/tasks/{key}/complete` → Complete task
 - `PATCH /v1/process-instances/{key}/variables` → Update variables
+- `POST /v1/process-instances/search` → Search process instances (by business key, variables, etc.)
+
+## Process Instance Recovery
+
+When users log out or refresh the page, they need to resume their active deal processes. See **[PROCESS_INSTANCE_RECOVERY.md](PROCESS_INSTANCE_RECOVERY.md)** for recommended approaches:
+
+- **Approach 1 (Recommended)**: Backend database storage with user-process mapping
+- **Approach 2**: Camunda Search API with process variables
+- **Approach 3**: Business key lookup
+
+The guide includes complete implementation examples for all approaches.
 
 ## Support
 
