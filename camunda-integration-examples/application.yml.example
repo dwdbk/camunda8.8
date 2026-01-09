@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: deal-process-service
+  
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # LSCSAD realm configuration for validating frontend tokens
+          issuer-uri: http://keycloak:8080/realms/LSCSAD
+          jwk-set-uri: http://keycloak:8080/realms/LSCSAD/protocol/openid-connect/certs
+  
+  # WebClient configuration for Camunda REST API calls
+  webflux:
+    base-path: /api
+
+# Camunda 8.8 configuration
+camunda:
+  # Zeebe gateway (if using Zeebe client directly)
+  zeebe:
+    gateway-address: localhost:26500
+    security:
+      enabled: true
+      keycloak-url: http://keycloak:8080
+      realm: camunda-platform
+      client-id: ${CAMUNDA_CLIENT_ID}
+      client-secret: ${CAMUNDA_CLIENT_SECRET}
+  
+  # Camunda REST API configuration
+  rest:
+    base-url: http://localhost:8081
+    keycloak-url: http://keycloak:8080
+    realm: camunda-platform
+    client-id: ${CAMUNDA_CLIENT_ID}
+    client-secret: ${CAMUNDA_CLIENT_SECRET}
+  
+  # Keycloak configuration for Camunda realm authentication
+  keycloak:
+    url: http://keycloak:8080
+    realm: camunda-platform
+    client-id: ${CAMUNDA_CLIENT_ID}
+    client-secret: ${CAMUNDA_CLIENT_SECRET}
+
+# Process definition configuration
+deal-process:
+  process-definition-key: deal-initiation-process
+  business-key-prefix: DEAL-
+
+# Logging configuration
+logging:
+  level:
+    com.example.camunda: DEBUG
+    org.springframework.security: INFO
+    org.springframework.web: INFO
